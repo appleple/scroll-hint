@@ -12,10 +12,14 @@
 		.table td {
 			white-space: nowrap;
 		}
+		.table-wrap {
+			width: 250px;
+		}
 	</style>
 </head>
 
 <body>
+	<div class="table-wrap">
 	<div class="js-scrollable">
 	<table class="table">
 		<tbody>
@@ -57,6 +61,7 @@
 		</tbody>
 	</table>
 	</div>
+</div>
 	<script src="../build/scroll-hint.js"></script>
 	<script>
 	new ScrollHint('.js-scrollable');
