@@ -1,0 +1,20 @@
+{
+  "extends": [
+    "airbnb-base"
+  ],
+  "env": {
+    "browser": true
+  },
+  "globals": {
+    "document": true,
+    "window": true
+  },
+  "rules":{
+    "comma-dangle": 0,
+    "no-useless-escape": 0,
+    "class-methods-use-this": 0,
+    "no-bitwise": 0,
+    "no-mixed-operators": 0,
+    "no-param-reassign": 0
+  }
+}
