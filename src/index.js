@@ -22,7 +22,9 @@ export default class ScrollHint {
         item.interacted = true;
         this.updateItem(item);
       });
-      append(element, `<div class="scroll-hint"><span></span></div>`);
+      append(element, `<div class="scroll-hint">
+        <span class="scroll-hint-icon"></span>
+      </div>`);
       this.items.push(item);
     });
     window.addEventListener('scroll', () => {
@@ -46,7 +48,7 @@ export default class ScrollHint {
     });
   }
 
-  checkPosition(item) {
+  updateStatus(item) {
     const { element, scrolledIn, interacted } = item;
     if (scrolledIn) {
       return;
@@ -59,7 +61,7 @@ export default class ScrollHint {
   updateItem (item) {
     const { opt } = this;
     const { element } = item;
-    this.checkPosition(item);
+    this.updateStatus(item);
     if (this.canScroll(item)) {
       addClass(element, opt.scrollableClass);
     } else {
