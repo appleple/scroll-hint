@@ -8,18 +8,40 @@
 	<title>ScrollHint</title>
 	<link rel="stylesheet" href="../css/scroll-hint.css">
 	<style>
-		.table th,
-		.table td {
-			white-space: nowrap;
-		}
-		.table-wrap {
-			width: 250px;
-		}
+
+	/* .table-wrap {
+		width: 300px;
+	} */
+
+	.table {
+		width: 100%;
+		max-width: 100%;
+		margin-bottom: 1rem;
+		border-collapse: collapse;
+		background-color: transparent;
+	}
+
+	.table td,.table th {
+		white-space: nowrap;
+		padding: .75rem;
+		vertical-align: top;
+		border-top: 1px solid #dee2e6
+	}
+
+	.table thead th {
+		vertical-align: bottom;
+		border-bottom: 2px solid #dee2e6
+	}
+
+	.table tbody+tbody {
+		border-top: 2px solid #dee2e6
+	}
 	</style>
 </head>
 
 <body>
 	<div class="table-wrap">
+	<h1>Test</h1>
 	<div class="js-scrollable">
 	<table class="table">
 		<tbody>
@@ -61,16 +83,8 @@
 		</tbody>
 	</table>
 	</div>
-	<div class="js-scrollable">
-		<table>
-			<tr>
-				<th>test</th>
-				<th>test</th>
-				<th>test</th>
-				<th>test</th>
-			</tr>
-		</table>
-	</div>
+	<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum doloremque, at, qui sequi officiis tempore rem quae tempora ut, dolorum autem! Nobis, modi! Labore eaque recusandae aspernatur, quibusdam quasi totam.</p>
+	<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae, molestias a corrupti odit asperiores reiciendis. Officia, quisquam sequi. Aut laborum ab delectus ullam reiciendis ex quo facilis perferendis provident sit.</p>
 </div>
 	<script src="../build/scroll-hint.js"></script>
 	<script>
