@@ -1,6 +1,6 @@
 # ScrollHint
 
-Suggests that the elements are scrollable horizontaly, with the `box-shadow` and the `pointer icon`.
+Suggests that the elements are scrollable horizontally, with the `box-shadow` and the `pointer icon`.
 
 <img src="./assets/demo.gif">
 
