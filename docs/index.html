@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="steelydylan">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="ScrollHint">
+    <meta property="og:title" content="ScrollHint">
+    <meta property="og:description" content="A JS library to suggest that the elements are scrollable horizontally, with the box-shadow and the pointer icon.">
+    <meta property="og:url" content="https://appleple.github.io/scroll-hint/">
+    <meta property="og:image" content="./img/screenshot.png">
+    <meta name="twitter:site" content="ScrollHint">
+    <meta name="twitter:creator" content="@appleplecom">
+    <meta name="twitter:url" content="https://appleple.github.io/scroll-hint/">
+    <meta name="twitter:title" content="ScrollHint">
+    <meta name="twitter:description" content="A JS library to suggest that the elements are scrollable horizontally, with the box-shadow and the pointer icon.">
+    <meta name="twitter:card" content="summary">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="">
+  <title>ScrollHint</title>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/uny@latest/dist/css/uny.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/scroll-hint@0.0.1/css/scroll-hint.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <style>
+    .fa {
+      margin-right: .25em;
+    }
+
+    .button.is-icon .fa,
+    .button.is-round .fa {
+      margin-right: 0;
+    }
+
+    .header .menu {
+      margin-left: auto;
+      margin-right: 2.5rem;
+    }
+
+    .uny-logo:before {
+      content: "Uny";
+      font-size: 8rem;
+      line-height: 1;
+      color: #fff;
+      font-weight: 300;
+    }
+
+    table td,
+    table th{
+      white-space: nowrap;
+      background: transparent !important;
+    }
+
+    .js-scrollable {
+      max-width: 640px;
+      margin: 30px auto 0 auto;
+    }
+
+    @media screen and (min-width: 768px) {
+      .uny-logo:before {
+        font-size: 12.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <h1 class="logo is-medium">ScrollHint</h1>
+  </header>
+
+  <div class="hero is-center is-gradation">
+    <h1 class="type-h1">ScrollHint</h1>
+    <p>
+      A JS library to suggest that the elements are scrollable horizontally, with the box-shadow and the pointer icon.</p>
+    <p>
+      <a href="./demos/" class="button is-white is-medium">
+        <i class="fa fa-download"></i> Download</a>
+    </p>
+  </div>
+
+  <main class="main">
+    <div class="content">
+      <section class="section">
+        <div class="inner is-small">
+          <h2><i class="fa fa-check"></i> Demo</h2>
+        </div>
+        <div class="js-scrollable">
+        <table>
+          <!-- <caption>Table</caption> -->
+          <thead>
+            <tr>
+              <th>Col1</th>
+              <th>Col2</th>
+              <th>Col3</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lorem ipsum dolor sit.</td>
+              <td>Lorem ipsum dolor sit.</td>
+              <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, magnam.</td>
+            </tr>
+            <tr>
+              <td>Lorem ipsum dolor sit.</td>
+              <td>Lorem ipsum dolor sit.</td>
+              <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, magnam.</td>
+            </tr>
+            <tr>
+              <td>Lorem ipsum dolor sit.</td>
+              <td>Lorem ipsum dolor sit.</td>
+              <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, magnam.</td>
+            </tr>
+            <tr>
+              <td>Lorem ipsum dolor sit.</td>
+              <td>Lorem ipsum dolor sit.</td>
+              <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, magnam.</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Tips.</td>
+              <td>Tips.</td>
+              <td>Tips.</td>
+            </tr>
+          </tfoot>
+        </table>
+        </div>
+      </section>
+
+
+      <section class="section">
+        <div class="inner is-small">
+          <h2>
+            <i class="fa fa-bolt"></i> Quick start</h2>
+          <h3>Using CDN</h3>
+          <p>In addition to downloading and loading CSS and JS files,
+            <br>you can easily start by using CDN.</p>
+          <p>Add the following description in the
+            <code>&lt;head&gt;</code> tag of the web page you want to use ScrollHint.</p>
+          <pre><code class="html">&lt;link rel="stylesheet" href="https://unpkg.com/scroll-hint@latest/dist/css/scroll-hint.min.css"&gt;
+&lt;script src="https://unpkg.com/scroll-hint@latest/dist/js/scroll-hint.min.js"&gt;&lt;/script&gt;</code></pre>
+          <p>Wrap the elements you want to apply ScrollSuggest like below</p>
+          <pre><code class="html">&lt;div class="js-scrollable"&gt;
+  &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;Col1&lt;/th&gt;
+          &lt;th&gt;Col2&lt;/th&gt;
+          &lt;th&gt;Col3&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Lorem ipsum dolor sit.&lt;/td&gt;
+          &lt;td&gt;Lorem ipsum dolor sit.&lt;/td&gt;
+          &lt;td&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, magnam.&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+          <p>Write the following script</p>
+          <pre><code class="js">new ScrollHint('js-scrollable');</code></pre>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="inner is-small">
+          <h2>
+            <i class="fa fa-github"></i> View on GitHub</h2>
+          <p>ScrollHint was developed by
+            <a href="https://twitter.com/appleplecom">@appleplecom</a> and is open source (MIT license) on GitHub.
+            <br>Please send us feedback, requests, bug reports and pull requests!</p>
+          <p>If you like it, please press Star ;)</p>
+          <p>
+            <a href="https://github.com/appleple/scroll-hint" class="button">
+              <i class="fa fa-github"></i> GitHub page</a>
+          </p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="inner">
+      <div class="logo is-medium">ScrollHint</div>
+      <div class="margin-left-small margin-right-small">
+        <p>A modern CSS framework.
+          <br>ScrollHint is provided with
+          <a href="https://github.com/appleple/scroll-hint/blob/master/LICENSE">MIT license.</a> Made by @appleplecom &hearts; OSS</p>
+        <p>Icon fonts by Font Awesome, Photo by Unsplash</p>
+      </div>
+      <small class="copyright">&copy; 2018 ScrollHint</small>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/uny@latest/dist/js/uny.min.js"></script>
+  <script src="https://unpkg.com/scroll-hint@0.0.1/js/scroll-hint.js"></script>
+  <script>
+  new ScrollHint('.js-scrollable');
+  </script>
+</body>
+
+</html>
