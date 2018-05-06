@@ -80,7 +80,11 @@ var _util = require('./util');
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var defaults = {
-  scrollableClass: 'is-scrollable'
+  suggestClass: 'is-active',
+  scrollableClass: 'is-scrollable',
+  scrollHintClass: 'scroll-hint',
+  scrollHintIconClass: 'scroll-hint-icon',
+  scrollHintIconWrapClass: 'scroll-hint-icon-wrap'
 };
 
 var ScrollHint = function () {
@@ -104,7 +108,8 @@ var ScrollHint = function () {
         item.interacted = true;
         _this.updateItem(item);
       });
-      (0, _util.append)(element, '<div class="scroll-hint">\n        <span class="scroll-hint-icon"></span>\n      </div>');
+      (0, _util.addClass)(element, _this.opt.scrollHintClass);
+      (0, _util.append)(element, '<div class="' + _this.opt.scrollHintIconWrapClass + '" data-target="scrollable-icon">\n        <span class="' + _this.opt.scrollHintIconClass + '"></span>\n      </div>');
       _this.items.push(item);
     });
     window.addEventListener('scroll', function () {
@@ -117,13 +122,19 @@ var ScrollHint = function () {
   }
 
   _createClass(ScrollHint, [{
-    key: 'canScroll',
-    value: function canScroll(item) {
-      var element = item.element,
-          scrolledIn = item.scrolledIn,
+    key: 'isScrollable',
+    value: function isScrollable(item) {
+      var element = item.element;
+
+      return element.offsetHeight === element.scrollHeight && element.clientWidth <= element.scrollWidth;
+    }
+  }, {
+    key: 'needSuggest',
+    value: function needSuggest(item) {
+      var scrolledIn = item.scrolledIn,
           interacted = item.interacted;
 
-      return !interacted && scrolledIn && element.offsetHeight === element.scrollHeight && element.clientWidth <= element.scrollWidth;
+      return !interacted && scrolledIn && this.isScrollable(item);
     }
   }, {
     key: 'updateItems',
@@ -154,11 +165,17 @@ var ScrollHint = function () {
       var opt = this.opt;
       var element = item.element;
 
+      var target = element.querySelector('[data-target="scrollable-icon"]');
       this.updateStatus(item);
-      if (this.canScroll(item)) {
+      if (this.isScrollable(item)) {
         (0, _util.addClass)(element, opt.scrollableClass);
       } else {
-        (0, _util.removeClass)(element, opt.scrollableClass);
+        (0, _util.removeClass)(element.opt.scrollableClass);
+      }
+      if (this.needSuggest(item)) {
+        (0, _util.addClass)(target, opt.suggestClass);
+      } else {
+        (0, _util.removeClass)(target, opt.suggestClass);
       }
     }
   }]);

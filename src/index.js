@@ -2,7 +2,11 @@ import { assign } from 'es6-object-assign';
 import { append, addClass, removeClass, getScrollTop, getOffset } from './util';
 
 const defaults = {
-  scrollableClass: 'is-scrollable'
+  suggestClass: 'is-active',
+  scrollableClass : 'is-scrollable',
+  scrollHintClass: 'scroll-hint',
+  scrollHintIconClass: 'scroll-hint-icon',
+  scrollHintIconWrapClass: 'scroll-hint-icon-wrap'
 }
 
 export default class ScrollHint {
@@ -22,8 +26,9 @@ export default class ScrollHint {
         item.interacted = true;
         this.updateItem(item);
       });
-      append(element, `<div class="scroll-hint">
-        <span class="scroll-hint-icon"></span>
+      addClass(element, this.opt.scrollHintClass);
+      append(element, `<div class="${this.opt.scrollHintIconWrapClass}" data-target="scrollable-icon">
+        <span class="${this.opt.scrollHintIconClass}"></span>
       </div>`);
       this.items.push(item);
     });
@@ -36,10 +41,14 @@ export default class ScrollHint {
     this.updateItems();
   }
 
-  canScroll (item) {
-    const { element, scrolledIn, interacted } = item;
-    return !interacted && scrolledIn &&
-    element.offsetHeight === element.scrollHeight && element.clientWidth <= element.scrollWidth;
+  isScrollable (item) {
+    const { element } = item;
+    return element.offsetHeight === element.scrollHeight && element.clientWidth <= element.scrollWidth;
+  }
+
+  needSuggest (item) {
+    const { scrolledIn, interacted } = item;
+    return !interacted && scrolledIn && this.isScrollable(item);
   }
 
   updateItems () {
@@ -61,12 +70,17 @@ export default class ScrollHint {
   updateItem (item) {
     const { opt } = this;
     const { element } = item;
+    const target = element.querySelector(`[data-target="scrollable-icon"]`);
     this.updateStatus(item);
-    if (this.canScroll(item)) {
+    if (this.isScrollable(item)) {
       addClass(element, opt.scrollableClass);
     } else {
-      removeClass(element, opt.scrollableClass);
+      removeClass(element. opt.scrollableClass);
+    }
+    if (this.needSuggest(item)) {
+      addClass(target, opt.suggestClass);
+    } else {
+      removeClass(target, opt.suggestClass);
     }
   }
-
 }
