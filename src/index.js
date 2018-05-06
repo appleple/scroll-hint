@@ -4,9 +4,12 @@ import { append, addClass, removeClass, getScrollTop, getOffset } from './util';
 const defaults = {
   suggestClass: 'is-active',
   scrollableClass : 'is-scrollable',
+  scrollableRightClass: 'is-right-scrollable',
+  scrollableLeftClass: 'is-left-scrollable',
   scrollHintClass: 'scroll-hint',
   scrollHintIconClass: 'scroll-hint-icon',
-  scrollHintIconWrapClass: 'scroll-hint-icon-wrap'
+  scrollHintIconWrapClass: 'scroll-hint-icon-wrap',
+  scrollHintBorderWidth: 10
 }
 
 export default class ScrollHint {
@@ -43,7 +46,26 @@ export default class ScrollHint {
 
   isScrollable (item) {
     const { element } = item;
-    return element.offsetHeight === element.scrollHeight && element.clientWidth <= element.scrollWidth;
+    return element.offsetHeight === element.scrollHeight && element.clientWidth < element.scrollWidth;
+  }
+
+  checkScrollableDir (item) {
+    const { scrollHintBorderWidth, scrollableRightClass, scrollableLeftClass } = this.opt;
+    const { element } = item;
+    const child = element.children[0];
+    const width = child.offsetWidth;
+    const parentWidth = element.offsetWidth;
+    const scrollLeft = element.scrollLeft;
+    if (parentWidth + scrollLeft < width - scrollHintBorderWidth) {
+      addClass(element, scrollableRightClass);
+    } else {
+      removeClass(element, scrollableRightClass);
+    }
+    if (parentWidth < width && scrollLeft > scrollHintBorderWidth) {
+      addClass(element, scrollableLeftClass);
+    } else {
+      removeClass(element, scrollableLeftClass);
+    }
   }
 
   needSuggest (item) {
@@ -75,12 +97,13 @@ export default class ScrollHint {
     if (this.isScrollable(item)) {
       addClass(element, opt.scrollableClass);
     } else {
-      removeClass(element. opt.scrollableClass);
+      removeClass(element, opt.scrollableClass);
     }
     if (this.needSuggest(item)) {
       addClass(target, opt.suggestClass);
     } else {
       removeClass(target, opt.suggestClass);
     }
+    this.checkScrollableDir(item);
   }
 }

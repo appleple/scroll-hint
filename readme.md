@@ -1,1 +1,1 @@
-# scroll-hint.js
+# ScrollHint
