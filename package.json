@@ -7,7 +7,7 @@
   "scripts": {
     "test": "npm run lint",
     "lint": "eslint ./src/index.js --fix",
-    "bundle": "browserify ./src/index.js -t babelify -p licensify --standalone ScrollHint --outfile ./build/scroll-hint.js",
+    "bundle": "browserify ./src/index.js -t babelify -p licensify --standalone ScrollHint --outfile ./js/scroll-hint.js",
     "minifyjs": "uglifyjs ./js/scroll-hint.js --comments 'license' -o ./js/scroll-hint.min.js",
     "build": "npm run bundle && npm run minifyjs",
     "build:lib": "babel src --out-dir lib",
