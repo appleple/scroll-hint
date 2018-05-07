@@ -92,6 +92,41 @@
     <div class="content">
       <section class="section">
         <div class="inner is-small">
+          <h2>
+            <i class="fa fa-bolt"></i> Quick start</h2>
+          <h3>Using CDN</h3>
+          <p>In addition to downloading and loading CSS and JS files,
+            <br>you can easily start by using CDN.</p>
+          <p>Add the following description in the
+            <code>&lt;head&gt;</code> tag of the web page you want to use ScrollHint.</p>
+          <pre><code class="html">&lt;link rel="stylesheet" href="https://unpkg.com/scroll-hint@latest/dist/css/scroll-hint.min.css"&gt;
+&lt;script src="https://unpkg.com/scroll-hint@latest/dist/js/scroll-hint.min.js"&gt;&lt;/script&gt;</code></pre>
+          <p>Wrap the elements you want to apply ScrollSuggest like below</p>
+          <pre><code class="html">&lt;div class="js-scrollable"&gt;
+  &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;Col1&lt;/th&gt;
+          &lt;th&gt;Col2&lt;/th&gt;
+          &lt;th&gt;Col3&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;Lorem ipsum dolor sit.&lt;/td&gt;
+          &lt;td&gt;Lorem ipsum dolor sit.&lt;/td&gt;
+          &lt;td&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, magnam.&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+          <p>Write the following script</p>
+          <pre><code class="js">new ScrollHint('js-scrollable');</code></pre>
+        </div>
+			</section>
+
+      <section class="section">
+        <div class="inner is-small">
           <h2><i class="fa fa-check"></i> Demo</h2>
         </div>
         <div class="js-scrollable">
@@ -134,42 +169,6 @@
             </tr>
           </tfoot>
         </table>
-        </div>
-      </section>
-
-
-      <section class="section">
-        <div class="inner is-small">
-          <h2>
-            <i class="fa fa-bolt"></i> Quick start</h2>
-          <h3>Using CDN</h3>
-          <p>In addition to downloading and loading CSS and JS files,
-            <br>you can easily start by using CDN.</p>
-          <p>Add the following description in the
-            <code>&lt;head&gt;</code> tag of the web page you want to use ScrollHint.</p>
-          <pre><code class="html">&lt;link rel="stylesheet" href="https://unpkg.com/scroll-hint@latest/dist/css/scroll-hint.min.css"&gt;
-&lt;script src="https://unpkg.com/scroll-hint@latest/dist/js/scroll-hint.min.js"&gt;&lt;/script&gt;</code></pre>
-          <p>Wrap the elements you want to apply ScrollSuggest like below</p>
-          <pre><code class="html">&lt;div class="js-scrollable"&gt;
-  &lt;table&gt;
-      &lt;thead&gt;
-        &lt;tr&gt;
-          &lt;th&gt;Col1&lt;/th&gt;
-          &lt;th&gt;Col2&lt;/th&gt;
-          &lt;th&gt;Col3&lt;/th&gt;
-        &lt;/tr&gt;
-      &lt;/thead&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;Lorem ipsum dolor sit.&lt;/td&gt;
-          &lt;td&gt;Lorem ipsum dolor sit.&lt;/td&gt;
-          &lt;td&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, magnam.&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-&lt;/div&gt;</code></pre>
-          <p>Write the following script</p>
-          <pre><code class="js">new ScrollHint('js-scrollable');</code></pre>
         </div>
       </section>
 
