@@ -3,7 +3,7 @@ import { append, addClass, removeClass, getScrollTop, getOffset } from './util';
 
 const defaults = {
   suggestClass: 'is-active',
-  scrollableClass : 'is-scrollable',
+  scrollableClass: 'is-scrollable',
   scrollableRightClass: 'is-right-scrollable',
   scrollableLeftClass: 'is-left-scrollable',
   scrollHintClass: 'scroll-hint',
@@ -11,10 +11,10 @@ const defaults = {
   scrollHintIconWrapClass: 'scroll-hint-icon-wrap',
   scrollHintBorderWidth: 10,
   enableOverflowScrolling: true
-}
+};
 
 export default class ScrollHint {
-  constructor (ele, option) {
+  constructor(ele, option) {
     this.opt = assign({}, defaults, option);
     this.items = [];
     const elements = typeof ele === 'string' ? document.querySelectorAll(ele) : ele;
@@ -52,12 +52,13 @@ export default class ScrollHint {
     this.updateItems();
   }
 
-  isScrollable (item) {
+  isScrollable(item) {
     const { element } = item;
-    return element.offsetHeight === element.scrollHeight && element.clientWidth < element.scrollWidth;
+    return element.offsetHeight === element.scrollHeight &&
+    element.clientWidth < element.scrollWidth;
   }
 
-  checkScrollableDir (item) {
+  checkScrollableDir(item) {
     const { scrollHintBorderWidth, scrollableRightClass, scrollableLeftClass } = this.opt;
     const { element } = item;
     const child = element.children[0];
@@ -76,19 +77,19 @@ export default class ScrollHint {
     }
   }
 
-  needSuggest (item) {
+  needSuggest(item) {
     const { scrolledIn, interacted } = item;
     return !interacted && scrolledIn && this.isScrollable(item);
   }
 
-  updateItems () {
+  updateItems() {
     [].forEach.call(this.items, (item) => {
       this.updateItem(item);
     });
   }
 
   updateStatus(item) {
-    const { element, scrolledIn, interacted } = item;
+    const { element, scrolledIn } = item;
     if (scrolledIn) {
       return;
     }
@@ -97,10 +98,10 @@ export default class ScrollHint {
     }
   }
 
-  updateItem (item) {
+  updateItem(item) {
     const { opt } = this;
     const { element } = item;
-    const target = element.querySelector(`[data-target="scrollable-icon"]`);
+    const target = element.querySelector('[data-target="scrollable-icon"]');
     this.updateStatus(item);
     if (this.isScrollable(item)) {
       addClass(element, opt.scrollableClass);

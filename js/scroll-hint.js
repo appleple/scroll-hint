@@ -184,8 +184,7 @@ var ScrollHint = function () {
     key: 'updateStatus',
     value: function updateStatus(item) {
       var element = item.element,
-          scrolledIn = item.scrolledIn,
-          interacted = item.interacted;
+          scrolledIn = item.scrolledIn;
 
       if (scrolledIn) {
         return;
