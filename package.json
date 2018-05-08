@@ -1,6 +1,6 @@
 {
   "name": "scroll-hint",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "steelydylan",
   "description": "JavaScript library to suggest that elements are scrollable",
   "license": "MIT",
@@ -22,8 +22,8 @@
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-es2015": "^6.18.0",
     "babelify": "^7.3.0",
-    "browserify": "^13.1.1",
     "browser-sync": "^2.18.6",
+    "browserify": "^13.1.1",
     "co": "^4.6.0",
     "eslint": "^3.13.0",
     "eslint-config-airbnb": "^13.0.0",
