@@ -9,7 +9,8 @@ const defaults = {
   scrollHintClass: 'scroll-hint',
   scrollHintIconClass: 'scroll-hint-icon',
   scrollHintIconWrapClass: 'scroll-hint-icon-wrap',
-  scrollHintBorderWidth: 10
+  scrollHintBorderWidth: 10,
+  enableOverflowScrolling: true
 }
 
 export default class ScrollHint {
@@ -20,6 +21,13 @@ export default class ScrollHint {
     [].forEach.call(elements, (element) => {
       element.style.position = 'relative';
       element.style.overflow = 'auto';
+      if (this.opt.enableOverflowScrolling) {
+        if ('overflowScrolling' in element.style) {
+          element.style.overflowScrolling = 'touch';
+        } else if ('webkitOverflowScrolling' in element.style) {
+          element.style.webkitOverflowScrolling = 'touch';
+        }
+      }
       const item = {
         element,
         scrolledIn: false,
@@ -53,7 +61,7 @@ export default class ScrollHint {
     const { scrollHintBorderWidth, scrollableRightClass, scrollableLeftClass } = this.opt;
     const { element } = item;
     const child = element.children[0];
-    const width = child.offsetWidth;
+    const width = child.scrollWidth;
     const parentWidth = element.offsetWidth;
     const scrollLeft = element.scrollLeft;
     if (parentWidth + scrollLeft < width - scrollHintBorderWidth) {
