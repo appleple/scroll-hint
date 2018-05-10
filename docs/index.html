@@ -25,33 +25,53 @@
   <title>ScrollHint</title>
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
     crossorigin="anonymous">
-  <link rel="stylesheet" href="https://unpkg.com/uny@latest/dist/css/uny.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://kokushin.github.io/unim/dist/css/unim-core.css">
+  <link rel="stylesheet" href="https://kokushin.github.io/unim/dist/css/unim-theme-product.css">
+  <link rel="stylesheet" href="https://kokushin.github.io/unim/dist/css/unim-color-teal.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/scroll-hint@0.0.3/css/scroll-hint.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
 
   <style>
-    .fa {
-      margin-right: .25em;
+    @media (max-width: 767px) {
+      .unim-logo-box {
+        order: -1;
+      }
     }
-
-    .button.is-icon .fa,
-    .button.is-round .fa {
-      margin-right: 0;
-    }
-
-    .header .menu {
+    .unim-logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 160px;
+      height: 160px;
+      background-color: #fff;
+      border-radius: 16px;
       margin-left: auto;
-      margin-right: 2.5rem;
+      margin-right: auto;
     }
-
-    .uny-logo:before {
-      content: "Uny";
-      font-size: 8rem;
+    .unim-logo:before {
+      content: "U";
+      display: block;
+      color: #009688;
+      font-size: 6rem;
       line-height: 1;
-      color: #fff;
-      font-weight: 300;
+    }
+    .header .logo sup {
+      font-size: .875rem;
+    }
+    .hero-title {
+      font-size: 4rem;
+      line-height: 1;
+    }
+    @media (max-width: 767px) {
+      .hero-title {
+        font-size: 3.5rem;
+      }
+    }
+    .section-title {
+      font-size: 3rem;
     }
 
     table td,
@@ -65,35 +85,46 @@
       margin: 30px auto 0 auto;
     }
 
-    @media screen and (min-width: 768px) {
-      .uny-logo:before {
-        font-size: 12.5rem;
-      }
-    }
   </style>
 </head>
 
 <body>
-  <header class="header">
-    <h1 class="logo is-medium">ScrollHint</h1>
-  </header>
-
-  <div class="hero is-center is-gradation">
-    <h1 class="type-h1">ScrollHint</h1>
-    <p>
-      A JS library to suggest that the elements are scrollable horizontally, with the box-shadow and the pointer icon.</p>
-    <p>
-      <a href="https://github.com/appleple/scroll-hint/archive/master.zip" class="button is-white is-medium">
-        <i class="fa fa-download"></i> Download</a>
-    </p>
-  </div>
+    <div class="hero" style="background-image:url(https://source.unsplash.com/random)">
+      <header class="header is-bar is-fixed">
+        <div class="inner is-medium">
+          <h1 class="logo">ScrollHint</h1>
+          <div class="menu is-hide-small">
+            <a href="#section-1">Feature</a>
+            <a href="#section-2">Usage</a>
+            <a href="#section-3">Docs</a>
+            <a href="https://github.com/appleple/scroll-hint/archive/master.zip" class="button is-small is-ghost">Download</a>
+          </div>
+        </div>
+      </header>
+      <div class="hero-content">
+        <div class="inner">
+          <div class="grid is-gutter is-middle is-col-2 is-col-small-1">
+            <div class="grid-cell">
+              <h2 class="hero-title">ScrollHint</h2>
+              <p class="hero-text">JS library to suggests that the elements are scrollable horizontally, with the box-shadow and the pointer icon.</p>
+              <p class="hero-text">
+                <a href="https://github.com/appleple/scroll-hint/archive/master.zip" class="button is-large">Download</a>
+              </p>
+            </div>
+            <div class="grid-cell is-col-fit unim-logo-box">
+              <div class="unim-logo is-shadow"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
 
   <main class="main">
     <div class="content">
       <section class="section">
         <div class="inner is-small">
-          <h2>
-            <i class="fa fa-bolt"></i> Quick start</h2>
+          <h2>Quick start</h2>
           <h3>Using CDN</h3>
           <p>In addition to downloading and loading CSS and JS files,
             <br>you can easily start by using CDN.</p>
@@ -120,6 +151,8 @@
       &lt;/tbody&gt;
     &lt;/table&gt;
 &lt;/div&gt;</code></pre>
+          <h3>You can also bundle the library with browserify/Webpack</h3>
+          <pre><code class="javascript">import ScrollHint from 'scroll-hint'</code></pre>
           <p>Write the following script</p>
           <pre><code class="js">new ScrollHint('js-scrollable');</code></pre>
         </div>
@@ -172,37 +205,61 @@
         </div>
       </section>
 
-      <section class="section">
-        <div class="inner is-small">
-          <h2>
-            <i class="fa fa-github"></i> View on GitHub</h2>
-          <p>ScrollHint was developed by
-            <a href="https://twitter.com/appleplecom">@appleplecom</a> and is open source (MIT license) on GitHub.
-            <br>Please send us feedback, requests, bug reports and pull requests!</p>
-          <p>If you like it, please press Star ;)</p>
-          <p>
-            <a href="https://github.com/appleple/scroll-hint" class="button">
-              <i class="fa fa-github"></i> GitHub page</a>
-          </p>
+      <section class="section" style="background-image:url(https://source.unsplash.com/random)">
+        <div class="inner">
+          <div class="grid is-gutter is-middle is-center">
+            <div class="grid-cell">
+              <h2 style="margin:0">Join development on</h2>
+            </div>
+            <div class="grid-cell">
+              <a href="https://github.com/appleple/scroll-hint" class="button is-large is-primary">GitHub</a>
+            </div>
+            <div class="grid-cell">
+              <a href="https://github.com/appleple/scroll-hint/blob/master/LICENSE">License</a>
+            </div>
+          </div>
         </div>
       </section>
     </div>
   </main>
 
-  <footer class="footer">
-    <div class="inner">
-      <div class="logo is-medium">ScrollHint</div>
-      <div class="margin-left-small margin-right-small">
-        <p>A modern CSS framework.
-          <br>ScrollHint is provided with
-          <a href="https://github.com/appleple/scroll-hint/blob/master/LICENSE">MIT license.</a> Made by @appleplecom &hearts; OSS</p>
-        <p>Icon fonts by Font Awesome, Photo by Unsplash</p>
+  <footer class="footer is-bar">
+      <div class="inner">
+        <!-- <div class="menu is-list">
+          <div class="menu-group">
+            <strong>Data</strong>
+            <a href="#">Home</a>
+            <a href="#">Works</a>
+            <a href="#">Profile</a>
+            <a href="#">Contact</a>
+          </div>
+          <div class="menu-group">
+            <strong>Detail</strong>
+            <a href="#">Home</a>
+            <a href="#">Works</a>
+            <a href="#">Profile</a>
+          </div>
+          <div class="menu-group">
+            <strong>Heading</strong>
+            <a href="#">Home</a>
+            <a href="#">Works</a>
+          </div>
+          <div class="menu-group">
+            <strong>Body</strong>
+            <a href="#">Home</a>
+            <a href="#">Works</a>
+            <a href="#">Profile</a>
+          </div>
+        </div> -->
+        <div class="menu">
+          <a href="https://twitter.com/appleplecom">Twitter</a>
+          <a href="https://github.com/appleple/scroll-hint">GitHub</a>
+        </div>
+        <small class="copyright">© 2018 ScrollHint</small>
       </div>
-      <small class="copyright">&copy; 2018 ScrollHint</small>
-    </div>
-  </footer>
+    </footer>
 
-  <script src="https://unpkg.com/uny@latest/dist/js/uny.min.js"></script>
+  <script src="https://kokushin.github.io/unim/dist/js/unim.js"></script>
   <script src="https://unpkg.com/scroll-hint@0.0.3/js/scroll-hint.js"></script>
   <script>
   new ScrollHint('.js-scrollable');
