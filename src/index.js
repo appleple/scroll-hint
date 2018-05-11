@@ -49,7 +49,7 @@ export default class ScrollHint {
       });
       addClass(element, this.opt.scrollHintClass);
       append(element, `<div class="${this.opt.scrollHintIconWrapClass}" data-target="scrollable-icon">
-        <span class="${this.opt.scrollHintIconClass}${this.opt.scrollHintIconAppendClass ? ` ${this.opt.scrollHintIconAppendClass}`: ''}"><div class="${this.opt.scrollHintText}">スクロールできます</div></span>
+        <span class="${this.opt.scrollHintIconClass}${this.opt.scrollHintIconAppendClass ? ` ${this.opt.scrollHintIconAppendClass}` : ''}"><div class="${this.opt.scrollHintText}">スクロールできます</div></span>
       </div>`);
       this.items.push(item);
     });
