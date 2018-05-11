@@ -5,7 +5,7 @@
  * scroll-hint:
  *   license: MIT (http://opensource.org/licenses/MIT)
  *   author: steelydylan
- *   version: 0.0.4
+ *   version: 0.0.5
  *
  * es6-object-assign:
  *   license: MIT (http://opensource.org/licenses/MIT)
@@ -131,7 +131,7 @@ var ScrollHint = function () {
         _this.updateItem(item);
       });
       (0, _util.addClass)(element, _this.opt.scrollHintClass);
-      (0, _util.append)(element, '<div class="' + _this.opt.scrollHintIconWrapClass + '" data-target="scrollable-icon">\n        <span class="' + _this.opt.scrollHintIconClass + (_this.opt.scrollHintIconAppendClass ? ' ' + _this.opt.scrollHintIconAppendClass : '') + '"><div class="' + _this.opt.scrollHintText + '">\u30B9\u30AF\u30ED\u30FC\u30EB\u3067\u304D\u307E\u3059</div></span>\n      </div>');
+      (0, _util.append)(element, '<div class="' + _this.opt.scrollHintIconWrapClass + '" data-target="scrollable-icon">\n        <span class="' + _this.opt.scrollHintIconClass + (_this.opt.scrollHintIconAppendClass ? ' ' + _this.opt.scrollHintIconAppendClass : '') + '">\n          <div class="' + _this.opt.scrollHintText + '">' + _this.opt.i18n.scrollable + '</div>\n        </span>\n      </div>');
       _this.items.push(item);
     });
     window.addEventListener('scroll', function () {
