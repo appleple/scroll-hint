@@ -8,10 +8,15 @@ const defaults = {
   scrollableLeftClass: 'is-left-scrollable',
   scrollHintClass: 'scroll-hint',
   scrollHintIconClass: 'scroll-hint-icon',
+  // scrollHintIconAppendClass: 'scroll-hint-icon-white',
   scrollHintIconWrapClass: 'scroll-hint-icon-wrap',
+  scrollHintText: 'scroll-hint-text',
   scrollHintBorderWidth: 10,
   enableOverflowScrolling: true,
-  applyToParents: false
+  applyToParents: false,
+  i18n: {
+    scrollable: 'scrollable'
+  }
 };
 
 export default class ScrollHint {
@@ -44,7 +49,7 @@ export default class ScrollHint {
       });
       addClass(element, this.opt.scrollHintClass);
       append(element, `<div class="${this.opt.scrollHintIconWrapClass}" data-target="scrollable-icon">
-        <span class="${this.opt.scrollHintIconClass}"></span>
+        <span class="${this.opt.scrollHintIconClass}"><div class="${this.opt.scrollHintText}">スクロールできます</div></span>
       </div>`);
       this.items.push(item);
     });
