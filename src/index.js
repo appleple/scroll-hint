@@ -10,7 +10,8 @@ const defaults = {
   scrollHintIconClass: 'scroll-hint-icon',
   scrollHintIconWrapClass: 'scroll-hint-icon-wrap',
   scrollHintBorderWidth: 10,
-  enableOverflowScrolling: true
+  enableOverflowScrolling: true,
+  applyToParents: false
 };
 
 export default class ScrollHint {
@@ -18,7 +19,11 @@ export default class ScrollHint {
     this.opt = assign({}, defaults, option);
     this.items = [];
     const elements = typeof ele === 'string' ? document.querySelectorAll(ele) : ele;
+    const { applyToParents } = this.opt;
     [].forEach.call(elements, (element) => {
+      if (applyToParents) {
+        element = element.parentElement;
+      }
       element.style.position = 'relative';
       element.style.overflow = 'auto';
       if (this.opt.enableOverflowScrolling) {
