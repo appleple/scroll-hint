@@ -16,15 +16,15 @@
 }
 
 .scroll-hint.is-right-scrollable {
-  background: linear-gradient(270deg,#999 0,transparent 10px,transparent);
+  box-shadow: inset -7px 0px 7px 0px rgba(0,0,0,.4);
 }
 
 .scroll-hint.is-right-scrollable.is-left-scrollable {
-  background: linear-gradient(90deg,#999 0,transparent 10px,transparent),linear-gradient(270deg,#999 0,transparent 10px,transparent);
+  box-shadow: inset -7px 0px 7px 0px rgba(0,0,0,.4), inset 7px 0px 7px 0px rgba(0,0,0,.4);
 }
 
 .scroll-hint.is-left-scrollable {
-  background: linear-gradient(90deg,#999 0,transparent 10px,transparent);
+  box-shadow: inset 7px 0px 7px 0px rgba(0,0,0,.4);
 }
 
 .scroll-hint-icon {
