@@ -93,6 +93,7 @@ var defaults = {
   remainingTime: -1,
   enableOverflowScrolling: true,
   applyToParents: false,
+  suggestiveShadow: false,
   i18n: {
     scrollable: 'scrollable'
   }
@@ -231,7 +232,9 @@ var ScrollHint = function () {
       } else {
         (0, _util.removeClass)(target, opt.suggestClass);
       }
-      this.checkScrollableDir(item);
+      if (opt.suggestiveShadow) {
+        this.checkScrollableDir(item);
+      }
     }
   }]);
 

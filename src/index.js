@@ -15,6 +15,7 @@ const defaults = {
   remainingTime: -1,
   enableOverflowScrolling: true,
   applyToParents: false,
+  suggestiveShadow: false,
   i18n: {
     scrollable: 'scrollable'
   }
@@ -132,6 +133,8 @@ export default class ScrollHint {
     } else {
       removeClass(target, opt.suggestClass);
     }
-    this.checkScrollableDir(item);
+    if (opt.suggestiveShadow) {
+      this.checkScrollableDir(item);
+    }
   }
 }
