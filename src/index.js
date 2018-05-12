@@ -8,10 +8,11 @@ const defaults = {
   scrollableLeftClass: 'is-left-scrollable',
   scrollHintClass: 'scroll-hint',
   scrollHintIconClass: 'scroll-hint-icon',
-  scrollHintIconAppendClass: 'scroll-hint-icon-white',
+  scrollHintIconAppendClass: '', //'scroll-hint-icon-white'
   scrollHintIconWrapClass: 'scroll-hint-icon-wrap',
   scrollHintText: 'scroll-hint-text',
   scrollHintBorderWidth: 10,
+  remainingTime: -1,
   enableOverflowScrolling: true,
   applyToParents: false,
   i18n: {
@@ -107,6 +108,12 @@ export default class ScrollHint {
     }
     if (getOffset(element).top < getScrollTop() + window.innerHeight) {
       item.scrolledIn = true;
+      if (this.opt.remainingTime !== -1) {
+        setTimeout(() => {
+          item.interacted = true;
+          this.updateItem(item);
+        }, this.opt.remainingTime)
+      }
     }
   }
 

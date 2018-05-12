@@ -87,7 +87,6 @@
     table td,
     table th{
       white-space: nowrap;
-      background: transparent !important;
     }
 
     .js-scrollable {
@@ -174,6 +173,7 @@
 					<h2 id="options">Options</h2>
 					<p>Some options are available when making new instances like below.</p>
 					<pre><code class="js">new ScrollHint('.js-scrollable', {
+	scrollHintIconAppendClass: 'scroll-hint-icon-white', // white-icon will appear
   applyToParents: true,
     i18n: {
       scrollable: 'スクロールできます'
@@ -231,6 +231,11 @@
 								<td><code>scrollHintText</code></td>
 								<td>scroll-hint-text</td>
 								<td>Classname to be added to the text</td>
+							</tr>
+							<tr>
+								<td><code>remainingTime</code></td>
+								<td>-1</td>
+								<td>When to hide scroll-hint icon (ms)</td>
 							</tr>
 							<tr>
 								<td><code>scrollHintBorderWidth</code></td>
