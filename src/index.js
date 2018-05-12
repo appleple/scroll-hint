@@ -8,7 +8,7 @@ const defaults = {
   scrollableLeftClass: 'is-left-scrollable',
   scrollHintClass: 'scroll-hint',
   scrollHintIconClass: 'scroll-hint-icon',
-  scrollHintIconAppendClass: '', //'scroll-hint-icon-white'
+  scrollHintIconAppendClass: '', // 'scroll-hint-icon-white'
   scrollHintIconWrapClass: 'scroll-hint-icon-wrap',
   scrollHintText: 'scroll-hint-text',
   scrollHintBorderWidth: 10,
@@ -112,7 +112,7 @@ export default class ScrollHint {
         setTimeout(() => {
           item.interacted = true;
           this.updateItem(item);
-        }, this.opt.remainingTime)
+        }, this.opt.remainingTime);
       }
     }
   }

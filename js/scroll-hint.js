@@ -5,7 +5,7 @@
  * scroll-hint:
  *   license: MIT (http://opensource.org/licenses/MIT)
  *   author: steelydylan
- *   version: 1.0.1
+ *   version: 1.1.0
  *
  * es6-object-assign:
  *   license: MIT (http://opensource.org/licenses/MIT)
@@ -86,7 +86,7 @@ var defaults = {
   scrollableLeftClass: 'is-left-scrollable',
   scrollHintClass: 'scroll-hint',
   scrollHintIconClass: 'scroll-hint-icon',
-  scrollHintIconAppendClass: '', //'scroll-hint-icon-white'
+  scrollHintIconAppendClass: '', // 'scroll-hint-icon-white'
   scrollHintIconWrapClass: 'scroll-hint-icon-wrap',
   scrollHintText: 'scroll-hint-text',
   scrollHintBorderWidth: 10,
