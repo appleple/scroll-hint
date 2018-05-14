@@ -21,8 +21,8 @@ yarn add scroll-hint
 ### via cdn
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/scroll-hint@0.0.1/css/scroll-hint.css">
-<script src="https://unpkg.com/scroll-hint@0.0.1/js/scroll-hint.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/scroll-hint@1.1.2/css/scroll-hint.css">
+<script src="https://unpkg.com/scroll-hint@1.1.2/js/scroll-hint.js"></script>
 ```
 
 
