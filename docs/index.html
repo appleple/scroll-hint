@@ -89,10 +89,15 @@
       white-space: nowrap;
     }
 
-    .js-scrollable {
+    .js-scrollable,
+		.js-scrollable-shadow {
       max-width: 640px;
       margin: 30px auto 0 auto;
     }
+
+		.js-scrollable-shadow table {
+			background-color: transparent;
+		}
 
   </style>
 </head>
@@ -314,7 +319,55 @@
             </tr>
           </tfoot>
         </table>
-        </div>
+				</div>
+				<div class="inner is-small" style="margin-top: 25px;">
+				<h3>Suggestive Shadow</h3>
+				<p>You can also show the shadow to suggest the content is scrollable, with the code below.</p>
+				<pre><code class="js">new ScrollHint('.js-scrollable', {
+  suggestiveShadow: true
+});</code></pre>
+			</div>
+				<div class="js-scrollable-shadow">
+					<table class="table">
+						<!-- <caption>Table</caption> -->
+						<thead>
+							<tr>
+								<th>Col1</th>
+								<th>Col2</th>
+								<th>Col3</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Lorem ipsum dolor sit.</td>
+								<td>Lorem ipsum dolor sit.</td>
+								<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, magnam.</td>
+							</tr>
+							<tr>
+								<td>Lorem ipsum dolor sit.</td>
+								<td>Lorem ipsum dolor sit.</td>
+								<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, magnam.</td>
+							</tr>
+							<tr>
+								<td>Lorem ipsum dolor sit.</td>
+								<td>Lorem ipsum dolor sit.</td>
+								<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, magnam.</td>
+							</tr>
+							<tr>
+								<td>Lorem ipsum dolor sit.</td>
+								<td>Lorem ipsum dolor sit.</td>
+								<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, magnam.</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td>Tips.</td>
+								<td>Tips.</td>
+								<td>Tips.</td>
+							</tr>
+						</tfoot>
+					</table>
+					</div>
       </section>
 
       <section class="section" style="background-image:url(https://source.unsplash.com/pb_lF8VWaPU/1600x900)">
@@ -375,6 +428,9 @@
   <script src="https://unpkg.com/scroll-hint@latest/js/scroll-hint.js"></script>
   <script>
   new ScrollHint('.js-scrollable');
+	new ScrollHint('.js-scrollable-shadow', {
+		suggestiveShadow: true
+	});
   </script>
 </body>
 
