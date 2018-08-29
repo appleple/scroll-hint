@@ -17,6 +17,7 @@
     "deploy": "np --no-cleanup"
   },
   "main": "./lib/index.js",
+  "types": "./index.d.ts",
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-plugin-add-module-exports": "^0.2.1",
