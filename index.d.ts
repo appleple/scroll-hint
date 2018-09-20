@@ -23,7 +23,7 @@ declare module 'scroll-hint' {
   }
 
   export default class ScrollHint {
-    constructor(selector: string | HTMLElement, option?:ScrollHintOption);
+    constructor(selector: string | NodeListOf<HTMLElement>, option?:ScrollHintOption);
     updateItems(): void;
   }
 }
