@@ -1,6 +1,6 @@
 {
   "name": "scroll-hint",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "author": "steelydylan",
   "description": "JavaScript library to suggest that elements are scrollable",
   "license": "MIT",
