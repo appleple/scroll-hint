@@ -68,7 +68,9 @@ export default class ScrollHint {
 
   isScrollable(item) {
     const { element } = item;
-    return element.clientWidth < element.scrollWidth;
+    const { offsetWidth } = element;
+    const boundingClientRectWidth = element.getBoundingClientRect().width;
+    return (offsetWidth < element.scrollWidth) && (offsetWidth === boundingClientRectWidth);
   }
 
   checkScrollableDir(item) {
