@@ -45,10 +45,12 @@ export default class ScrollHint {
         scrolledIn: false,
         interacted: false
       };
-      element.addEventListener('scroll', () => {
-        item.interacted = true;
-        this.updateItem(item);
-      });
+      document.addEventListener('scroll', (e) => {
+        if (e.target === element) {
+          item.interacted = true;
+          this.updateItem(item);
+        }
+      }, true);
       addClass(element, this.opt.scrollHintClass);
       append(element, `<div class="${this.opt.scrollHintIconWrapClass}" data-target="scrollable-icon">
         <span class="${this.opt.scrollHintIconClass}${this.opt.scrollHintIconAppendClass ? ` ${this.opt.scrollHintIconAppendClass}` : ''}">
