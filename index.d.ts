@@ -19,6 +19,7 @@ declare module 'scroll-hint' {
     enableOverflowScrolling?: boolean,
     applyToParents?: boolean,
     suggestiveShadow?: boolean,
+    offset: number,
     i18n?: i18n
   }
 
