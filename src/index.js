@@ -16,6 +16,7 @@ const defaults = {
   enableOverflowScrolling: true,
   applyToParents: false,
   suggestiveShadow: false,
+  offset: 0,
   i18n: {
     scrollable: 'scrollable'
   }
@@ -69,10 +70,10 @@ export default class ScrollHint {
   }
 
   isScrollable(item) {
+    const { offset } = this.opt;
     const { element } = item;
     const { offsetWidth } = element;
-    const boundingClientRectWidth = element.getBoundingClientRect().width;
-    return (offsetWidth < element.scrollWidth) && (offsetWidth === boundingClientRectWidth);
+    return (offsetWidth + offset < element.scrollWidth);
   }
 
   checkScrollableDir(item) {

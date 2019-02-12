@@ -5,7 +5,7 @@
  * scroll-hint:
  *   license: MIT (http://opensource.org/licenses/MIT)
  *   author: steelydylan
- *   version: 1.2.2
+ *   version: 1.2.3
  *
  * es6-object-assign:
  *   license: MIT (http://opensource.org/licenses/MIT)
@@ -94,6 +94,7 @@ var defaults = {
   enableOverflowScrolling: true,
   applyToParents: false,
   suggestiveShadow: false,
+  offset: 0,
   i18n: {
     scrollable: 'scrollable'
   }
@@ -150,11 +151,11 @@ var ScrollHint = function () {
   _createClass(ScrollHint, [{
     key: 'isScrollable',
     value: function isScrollable(item) {
+      var offset = this.opt.offset;
       var element = item.element;
       var offsetWidth = element.offsetWidth;
 
-      var boundingClientRectWidth = element.getBoundingClientRect().width;
-      return offsetWidth < element.scrollWidth && offsetWidth === boundingClientRectWidth;
+      return offsetWidth + offset < element.scrollWidth;
     }
   }, {
     key: 'checkScrollableDir',
