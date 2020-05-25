@@ -209,7 +209,7 @@ var ScrollHint = function () {
       if (scrolledIn) {
         return;
       }
-      if ((0, _util.getOffset)(element).top + element.offsetHeight / 2 < (0, _util.getScrollTop)() + window.innerHeight) {
+      if ((0, _util.getOffset)(element).top + Math.min(element.offsetHeight, window.innerHeight) / 2 < (0, _util.getScrollTop)() + window.innerHeight) {
         item.scrolledIn = true;
         if (this.opt.remainingTime !== -1) {
           setTimeout(function () {
