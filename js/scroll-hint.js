@@ -5,12 +5,11 @@
  * scroll-hint:
  *   license: MIT (http://opensource.org/licenses/MIT)
  *   author: steelydylan
- *   version: 1.2.3
+ *   version: 1.2.4
  *
  * es6-object-assign:
  *   license: MIT (http://opensource.org/licenses/MIT)
  *   author: Rubén Norte <rubennorte@gmail.com>
- *   maintainers: rubennorte <rubennorte@gmail.com>
  *   homepage: https://github.com/rubennorte/es6-object-assign
  *   version: 1.1.0
  *
@@ -209,7 +208,7 @@ var ScrollHint = function () {
       if (scrolledIn) {
         return;
       }
-      if ((0, _util.getOffset)(element).top + Math.min(element.offsetHeight, window.innerHeight) / 2 < (0, _util.getScrollTop)() + window.innerHeight) {
+      if ((0, _util.getOffset)(element).top < (0, _util.getScrollTop)() + window.innerHeight) {
         item.scrolledIn = true;
         if (this.opt.remainingTime !== -1) {
           setTimeout(function () {

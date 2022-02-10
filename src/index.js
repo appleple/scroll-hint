@@ -111,7 +111,7 @@ export default class ScrollHint {
     if (scrolledIn) {
       return;
     }
-    if (getOffset(element).top + (element.offsetHeight / 2) < getScrollTop() + window.innerHeight) {
+    if (getOffset(element).top < getScrollTop() + window.innerHeight) {
       item.scrolledIn = true;
       if (this.opt.remainingTime !== -1) {
         setTimeout(() => {
