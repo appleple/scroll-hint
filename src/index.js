@@ -1,5 +1,5 @@
 import { assign } from 'es6-object-assign';
-import { append, addClass, removeClass, getScrollTop } from './util';
+import { append, addClass, removeClass, getScrollTop, getOffset } from './util';
 
 const defaults = {
   suggestClass: 'is-active',
@@ -112,8 +112,7 @@ export default class ScrollHint {
       return;
     }
     const target = element.querySelector('[data-target="scrollable-icon"] > span');
-    const clientRect = target.getBoundingClientRect();
-    if (window.pageYOffset + clientRect.top < getScrollTop() + window.innerHeight) {
+    if (getOffset(target).top < getScrollTop() + window.innerHeight) {
       item.scrolledIn = true;
       if (this.opt.remainingTime !== -1) {
         setTimeout(() => {

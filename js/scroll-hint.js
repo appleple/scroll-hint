@@ -209,8 +209,7 @@ var ScrollHint = function () {
         return;
       }
       var target = element.querySelector('[data-target="scrollable-icon"] > span');
-      var clientRect = target.getBoundingClientRect();
-      if (window.pageYOffset + clientRect.top < (0, _util.getScrollTop)() + window.innerHeight) {
+      if ((0, _util.getOffset)(target).top < (0, _util.getScrollTop)() + window.innerHeight) {
         item.scrolledIn = true;
         if (this.opt.remainingTime !== -1) {
           setTimeout(function () {
