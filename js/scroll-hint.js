@@ -209,7 +209,9 @@ var ScrollHint = function () {
         return;
       }
       var target = element.querySelector('[data-target="scrollable-icon"] > span');
-      if ((0, _util.getOffset)(element).top + target.offsetHeight / 2 < (0, _util.getScrollTop)() + window.innerHeight) {
+      var clientRect = target.getBoundingClientRect();
+      if (window.pageYOffset + clientRect.top < (0, _util.getScrollTop)() + window.innerHeight) {
+        alert('発火');
         item.scrolledIn = true;
         if (this.opt.remainingTime !== -1) {
           setTimeout(function () {
