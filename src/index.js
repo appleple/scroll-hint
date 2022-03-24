@@ -114,7 +114,6 @@ export default class ScrollHint {
     const target = element.querySelector('[data-target="scrollable-icon"] > span');
     const clientRect = target.getBoundingClientRect();
     if (window.pageYOffset + clientRect.top < getScrollTop() + window.innerHeight) {
-      alert('発火');
       item.scrolledIn = true;
       if (this.opt.remainingTime !== -1) {
         setTimeout(() => {
