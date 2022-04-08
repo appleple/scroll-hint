@@ -115,6 +115,11 @@ new ScrollHint('.js-scrollable');
     <td>Apply JavaScript to the parent element</td>
   </tr>
   <tr>
+    <td><code>offset</code></td>
+    <td>0</td>
+    <td>You can change criteria for scrollable.</td>
+  </tr>
+  <tr>
     <td><code>i18n.scrollable</code></td>
     <td>scrollable</td>
     <td>You can change the scrollable text from here</td>
