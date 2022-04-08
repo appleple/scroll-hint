@@ -3,7 +3,7 @@ declare module 'scroll-hint' {
   interface i18n {
     scrollable: string
   }
-  
+
   interface ScrollHintOption {
     suggestClass?: string,
     scrollableClass?: string,
@@ -19,7 +19,7 @@ declare module 'scroll-hint' {
     enableOverflowScrolling?: boolean,
     applyToParents?: boolean,
     suggestiveShadow?: boolean,
-    offset: number,
+    offset?: number,
     i18n?: i18n
   }
 
