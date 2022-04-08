@@ -111,7 +111,8 @@ export default class ScrollHint {
     if (scrolledIn) {
       return;
     }
-    if (getOffset(element).top + (element.offsetHeight / 2) < getScrollTop() + window.innerHeight) {
+    const target = element.querySelector('[data-target="scrollable-icon"] > span');
+    if (getOffset(target).top < getScrollTop() + window.innerHeight) {
       item.scrolledIn = true;
       if (this.opt.remainingTime !== -1) {
         setTimeout(() => {
