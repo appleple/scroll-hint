@@ -31,7 +31,7 @@
   left: calc(50% - 60px);
   box-sizing: border-box;
   width: 120px;
-  height: auto;
+  height: 80px;
   border-radius: 5px;
   transition: opacity .3s;
   opacity: 0;
