@@ -26,7 +26,14 @@ export default class ScrollHint {
   constructor(ele, option) {
     this.opt = assign({}, defaults, option);
     this.items = [];
-    const elements = typeof ele === 'string' ? document.querySelectorAll(ele) : ele;
+    let elements;
+    if (ele instanceof HTMLElement) {
+      elements = [ele];
+    } else if (typeof ele === 'string') {
+      elements = document.querySelectorAll(ele);
+    } else {
+      elements = ele;
+    }
     const { applyToParents } = this.opt;
     [].forEach.call(elements, (element) => {
       if (applyToParents) {
