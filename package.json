@@ -1,6 +1,6 @@
 {
   "name": "scroll-hint",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "author": "steelydylan",
   "description": "JavaScript library to suggest that elements are scrollable",
   "license": "MIT",
@@ -35,7 +35,7 @@
     "node-cmd": "^2.0.0",
     "np": "^2.16.0",
     "npm-run-all": "^4.0.2",
-    "uglifyjs": "^2.4.10",
+    "uglify-js": "^3.19.3",
     "watch": "^1.0.1",
     "watchify": "^3.7.0"
   },
