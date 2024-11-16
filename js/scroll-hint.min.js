@@ -5,7 +5,7 @@
  * scroll-hint:
  *   license: MIT (http://opensource.org/licenses/MIT)
  *   author: steelydylan
- *   version: 1.2.6
+ *   version: 1.2.5
  *
  * es6-object-assign:
  *   license: MIT (http://opensource.org/licenses/MIT)
