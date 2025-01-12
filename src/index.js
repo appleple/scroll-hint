@@ -7,6 +7,7 @@ const defaults = {
   scrollableRightClass: 'is-right-scrollable',
   scrollableLeftClass: 'is-left-scrollable',
   scrollHintClass: 'scroll-hint',
+  scrollHintShadowWrapClass: 'scroll-hint-shadow-wrap',
   scrollHintIconClass: 'scroll-hint-icon',
   scrollHintIconAppendClass: '', // 'scroll-hint-icon-white'
   scrollHintIconWrapClass: 'scroll-hint-icon-wrap',
@@ -39,33 +40,57 @@ export default class ScrollHint {
       if (applyToParents) {
         element = element.parentElement;
       }
-      element.style.position = 'relative';
-      element.style.overflow = 'auto';
+      element.style.position = "relative";
+      element.style.overflow = "auto";
       if (this.opt.enableOverflowScrolling) {
-        if ('overflowScrolling' in element.style) {
-          element.style.overflowScrolling = 'touch';
-        } else if ('webkitOverflowScrolling' in element.style) {
-          element.style.webkitOverflowScrolling = 'touch';
+        if ("overflowScrolling" in element.style) {
+          element.style.overflowScrolling = "touch";
+        } else if ("webkitOverflowScrolling" in element.style) {
+          element.style.webkitOverflowScrolling = "touch";
         }
       }
       const item = {
         element,
         scrolledIn: false,
-        interacted: false
+        interacted: false,
       };
-      document.addEventListener('scroll', (e) => {
-        if (e.target === element) {
-          item.interacted = true;
-          this.updateItem(item);
-        }
-      }, true);
+      document.addEventListener(
+        "scroll",
+        (e) => {
+          if (e.target === element) {
+            item.interacted = true;
+            this.updateItem(item);
+          }
+        },
+        true
+      );
       addClass(element, this.opt.scrollHintClass);
-      append(element, `<div class="${this.opt.scrollHintIconWrapClass}" data-target="scrollable-icon">
-        <span class="${this.opt.scrollHintIconClass}${this.opt.scrollHintIconAppendClass ? ` ${this.opt.scrollHintIconAppendClass}` : ''}">
-          <div class="${this.opt.scrollHintText}">${this.opt.i18n.scrollable}</div>
-        </span>
-      </div>`);
       this.items.push(item);
+
+      append(
+        element,
+        `<div class="${
+          this.opt.scrollHintIconWrapClass
+        }" data-target="scrollable-icon">
+        <span class="${this.opt.scrollHintIconClass}${
+          this.opt.scrollHintIconAppendClass
+            ? ` ${this.opt.scrollHintIconAppendClass}`
+            : ""
+        }">
+          <div class="${this.opt.scrollHintText}">${
+          this.opt.i18n.scrollable
+        }</div>
+        </span>
+      </div>`
+      );
+
+      if (this.opt.suggestiveShadow) {
+        const wrapper = document.createElement("div");
+        wrapper.classList.add(this.opt.scrollHintShadowWrapClass);
+        element.parentNode.insertBefore(wrapper, element);
+        wrapper.appendChild(element);
+      }
+      
     });
     window.addEventListener('scroll', () => {
       this.updateItems();
