@@ -10,6 +10,7 @@ declare module 'scroll-hint' {
     scrollableRightClass?: string,
     scrollableLeftClass?: string,
     scrollHintClass?: string,
+    scrollHintShadowWrapClass?: string,
     scrollHintIconClass?: string,
     scrollHintIconAppendClass?: string,
     scrollHintIconWrapClass?: string,
