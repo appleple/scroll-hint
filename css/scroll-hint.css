@@ -13,18 +13,6 @@
   }
 }
 
-.scroll-hint.is-right-scrollable {
-  background: linear-gradient(270deg, rgba(0, 0, 0, .15) 0, rgba(0, 0, 0, 0) 16px, rgba(0, 0, 0, 0));
-}
-
-.scroll-hint.is-right-scrollable.is-left-scrollable {
-  background: linear-gradient(90deg, rgba(0, 0, 0, .15) 0, rgba(0, 0, 0, 0) 16px, rgba(0, 0, 0, 0)), linear-gradient(270deg, rgba(0, 0, 0, .15) 0, rgba(0, 0, 0, 0) 16px, rgba(0, 0, 0, 0));
-}
-
-.scroll-hint.is-left-scrollable {
-  background: linear-gradient(90deg, rgba(0, 0, 0, .15) 0, rgba(0, 0, 0, 0) 16px, rgba(0, 0, 0, 0));
-}
-
 .scroll-hint-icon {
   position: absolute;
   top: calc(50% - 25px);
@@ -113,4 +101,52 @@
 
 .scroll-hint-icon-white .scroll-hint-text {
   color: #000;
+}
+
+
+
+.scroll-hint-shadow-wrap {
+  position: relative;
+}
+
+.scroll-hint-shadow-wrap::after {
+  content: "";
+  width: 20px;
+  height: 100%;
+  background: linear-gradient(270deg, rgba(0, 0, 0, .15) 0, rgba(0, 0, 0, 0) 16px, rgba(0, 0, 0, 0));
+  position: absolute;
+  top: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.scroll-hint-shadow-wrap::before {
+  content: "";
+  width: 20px;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(0, 0, 0, .15) 0, rgba(0, 0, 0, 0) 16px, rgba(0, 0, 0, 0));
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.scroll-hint-shadow-wrap:has(.scroll-hint.is-right-scrollable)::after,
+.scroll-hint-shadow-wrap.is-right-scrollable::after
+ {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-hint-shadow-wrap:has(.scroll-hint.is-left-scrollable)::before,
+.scroll-hint-shadow-wrap.is-left-scrollable::before
+ {
+  opacity: 1;
+  visibility: visible;
 }

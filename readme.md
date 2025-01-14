@@ -21,8 +21,8 @@ yarn add scroll-hint
 ### via cdn
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/scroll-hint@1.1.2/css/scroll-hint.css">
-<script src="https://unpkg.com/scroll-hint@1.1.2/js/scroll-hint.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/scroll-hint@1.2.9/css/scroll-hint.css">
+<script src="https://unpkg.com/scroll-hint@1.2.9/js/scroll-hint.js"></script>
 ```
 
 
@@ -67,6 +67,11 @@ new ScrollHint('.js-scrollable');
     <td><code>scrollHintClass</code></td>
     <td>scroll-hint</td>
     <td>Classname to be added to the element</td>
+  </tr>
+  <tr>
+    <td><code>scrollHintShadowWrapClass</code></td>
+    <td>scroll-hint-shadow-wrap</td>
+    <td>Class name added to the wrapper element for shadow effects</td>
   </tr>
   <tr>
     <td><code>scrollHintIconClass</code></td>

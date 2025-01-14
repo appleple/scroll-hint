@@ -16,7 +16,6 @@
 	.table {
 		width: 100%;
 		max-width: 100%;
-		margin-bottom: 1rem;
 		border-collapse: collapse;
 		background-color: transparent;
 	}
@@ -26,7 +25,6 @@
 		padding: .75rem;
 		vertical-align: top;
 		border-top: 1px solid #4d4a40;
-		/* background-color: #FFF; */
 	}
 
 	.table thead th {
@@ -37,6 +35,11 @@
 	.table tbody+tbody {
 		border-top: 2px solid #4d4a40;
 	}
+
+	.example-2 table{
+		background-color: #ffd6d6;
+	}
+
 	</style>
 </head>
 
@@ -49,46 +52,89 @@
 	<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque corrupti exercitationem eos. Ducimus, sequi! Magnam, quidem veniam sit placeat voluptatum, error blanditiis amet tenetur odit omnis optio aliquid. Quisquam, numquam?</p>
 	<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque corrupti exercitationem eos. Ducimus, sequi! Magnam, quidem veniam sit placeat voluptatum, error blanditiis amet tenetur odit omnis optio aliquid. Quisquam, numquam?</p>
 	<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque corrupti exercitationem eos. Ducimus, sequi! Magnam, quidem veniam sit placeat voluptatum, error blanditiis amet tenetur odit omnis optio aliquid. Quisquam, numquam?</p>
-	<div class="js-scrollable">
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Company</th>
-				<th>Contact</th>
-				<th>Country</th>
-			</tr>
-			<tr>
-				<td>Alfreds Futterkiste</td>
-				<td>Maria Anders</td>
-				<td>Germany</td>
-			</tr>
-			<tr>
-				<td>Centro comercial Moctezuma</td>
-				<td>Francisco Chang</td>
-				<td>Mexico</td>
-			</tr>
-			<tr>
-				<td>Ernst Handel</td>
-				<td>Roland Mendel</td>
-				<td>Austria</td>
-			</tr>
-			<tr>
-				<td>Island Trading</td>
-				<td>Helen Bennett</td>
-				<td>UK</td>
-			</tr>
-			<tr>
-				<td>Laughing Bacchus Winecellars</td>
-				<td>Yoshi Tannamuri</td>
-				<td>Canada</td>
-			</tr>
-			<tr>
-				<td>Magazzini Alimentari Riuniti</td>
-				<td>Giovanni Rovelli</td>
-				<td>Italy</td>
-			</tr>
-		</tbody>
-	</table>
+	<h2>Example 1</h2>
+	<div class="js-scrollable example-1">
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Company</th>
+					<th>Contact</th>
+					<th>Country</th>
+				</tr>
+				<tr>
+					<td>Alfreds Futterkiste</td>
+					<td>Maria Anders</td>
+					<td>Germany</td>
+				</tr>
+				<tr>
+					<td>Centro comercial Moctezuma</td>
+					<td>Francisco Chang</td>
+					<td>Mexico</td>
+				</tr>
+				<tr>
+					<td>Ernst Handel</td>
+					<td>Roland Mendel</td>
+					<td>Austria</td>
+				</tr>
+				<tr>
+					<td>Island Trading</td>
+					<td>Helen Bennett</td>
+					<td>UK</td>
+				</tr>
+				<tr>
+					<td>Laughing Bacchus Winecellars</td>
+					<td>Yoshi Tannamuri</td>
+					<td>Canada</td>
+				</tr>
+				<tr>
+					<td>Magazzini Alimentari Riuniti</td>
+					<td>Giovanni Rovelli</td>
+					<td>Italy</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<h2>Example 2</h2>
+	<div class="js-scrollable example-2">
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Company</th>
+					<th>Contact</th>
+					<th>Country</th>
+				</tr>
+				<tr>
+					<td>Alfreds Futterkiste</td>
+					<td>Maria Anders</td>
+					<td>Germany</td>
+				</tr>
+				<tr>
+					<td>Centro comercial Moctezuma</td>
+					<td>Francisco Chang</td>
+					<td>Mexico</td>
+				</tr>
+				<tr>
+					<td>Ernst Handel</td>
+					<td>Roland Mendel</td>
+					<td>Austria</td>
+				</tr>
+				<tr>
+					<td>Island Trading</td>
+					<td>Helen Bennett</td>
+					<td>UK</td>
+				</tr>
+				<tr>
+					<td>Laughing Bacchus Winecellars</td>
+					<td>Yoshi Tannamuri</td>
+					<td>Canada</td>
+				</tr>
+				<tr>
+					<td>Magazzini Alimentari Riuniti</td>
+					<td>Giovanni Rovelli</td>
+					<td>Italy</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 	<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum doloremque, at, qui sequi officiis tempore rem quae tempora ut, dolorum autem! Nobis, modi! Labore eaque recusandae aspernatur, quibusdam quasi totam.</p>
 	<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae, molestias a corrupti odit asperiores reiciendis. Officia, quisquam sequi. Aut laborum ab delectus ullam reiciendis ex quo facilis perferendis provident sit.</p>
@@ -98,6 +144,10 @@
 	new ScrollHint('.js-scrollable', {
 		// scrollHintIconAppendClass: 'scroll-hint-icon-white'
 		// remainingTime: 5000
+	});
+
+	new ScrollHint('.js-scrollable.example-2', {
+		suggestiveShadow: true
 	});
 	</script>
 </body>
