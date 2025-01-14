@@ -21,8 +21,8 @@ yarn add scroll-hint
 ### via cdn
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/scroll-hint@1.2.9/css/scroll-hint.css">
-<script src="https://unpkg.com/scroll-hint@1.2.9/js/scroll-hint.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/scroll-hint@latest/css/scroll-hint.css">
+<script src="https://unpkg.com/scroll-hint@latest/js/scroll-hint.js"></script>
 ```
 
 
@@ -130,4 +130,3 @@ new ScrollHint('.js-scrollable');
     <td>You can change the scrollable text from here</td>
   </tr>
 </table>
-
