@@ -40,13 +40,13 @@ export default class ScrollHint {
       if (applyToParents) {
         element = element.parentElement;
       }
-      element.style.position = "relative";
-      element.style.overflow = "auto";
+      element.style.position = 'relative';
+      element.style.overflow = 'auto';
       if (this.opt.enableOverflowScrolling) {
-        if ("overflowScrolling" in element.style) {
-          element.style.overflowScrolling = "touch";
-        } else if ("webkitOverflowScrolling" in element.style) {
-          element.style.webkitOverflowScrolling = "touch";
+        if ('overflowScrolling' in element.style) {
+          element.style.overflowScrolling = 'touch';
+        } else if ('webkitOverflowScrolling' in element.style) {
+          element.style.webkitOverflowScrolling = 'touch';
         }
       }
       const item = {
@@ -55,7 +55,7 @@ export default class ScrollHint {
         interacted: false,
       };
       document.addEventListener(
-        "scroll",
+        'scroll',
         (e) => {
           if (e.target === element) {
             item.interacted = true;
@@ -73,24 +73,23 @@ export default class ScrollHint {
           this.opt.scrollHintIconWrapClass
         }" data-target="scrollable-icon">
         <span class="${this.opt.scrollHintIconClass}${
-          this.opt.scrollHintIconAppendClass
-            ? ` ${this.opt.scrollHintIconAppendClass}`
-            : ""
-        }">
+  this.opt.scrollHintIconAppendClass
+    ? ` ${this.opt.scrollHintIconAppendClass}`
+    : ''
+}">
           <div class="${this.opt.scrollHintText}">${
-          this.opt.i18n.scrollable
-        }</div>
+  this.opt.i18n.scrollable
+}</div>
         </span>
       </div>`
       );
 
       if (this.opt.suggestiveShadow) {
-        const wrapper = document.createElement("div");
+        const wrapper = document.createElement('div');
         wrapper.classList.add(this.opt.scrollHintShadowWrapClass);
         element.parentNode.insertBefore(wrapper, element);
         wrapper.appendChild(element);
       }
-      
     });
     window.addEventListener('scroll', () => {
       this.updateItems();
