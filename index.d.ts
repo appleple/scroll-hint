@@ -16,7 +16,7 @@ declare module 'scroll-hint' {
     scrollHintIconWrapClass?: string,
     scrollHintText?: string,
     scrollHintBorderWidth?: number,
-    remainingTime?: string,
+    remainingTime?: number,
     enableOverflowScrolling?: boolean,
     applyToParents?: boolean,
     suggestiveShadow?: boolean,
