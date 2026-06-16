@@ -39,6 +39,7 @@
 }
 
 .scroll-hint-text {
+  display: block;
   font-size: 0.625rem;
   color: #FFF;
   margin-top: 5px;

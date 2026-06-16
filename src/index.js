@@ -77,9 +77,9 @@ export default class ScrollHint {
     ? ` ${this.opt.scrollHintIconAppendClass}`
     : ''
 }">
-          <div class="${this.opt.scrollHintText}">${
+          <span class="${this.opt.scrollHintText}">${
   this.opt.i18n.scrollable
-}</div>
+}</span>
         </span>
       </div>`
       );
