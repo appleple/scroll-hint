@@ -52,7 +52,7 @@ export default class ScrollHint {
       const item = {
         element,
         scrolledIn: false,
-        interacted: false,
+        interacted: false
       };
       document.addEventListener(
         'scroll',
@@ -73,13 +73,13 @@ export default class ScrollHint {
           this.opt.scrollHintIconWrapClass
         }" data-target="scrollable-icon">
         <span class="${this.opt.scrollHintIconClass}${
-  this.opt.scrollHintIconAppendClass
-    ? ` ${this.opt.scrollHintIconAppendClass}`
-    : ''
-}">
+          this.opt.scrollHintIconAppendClass
+            ? ` ${this.opt.scrollHintIconAppendClass}`
+            : ''
+        }">
           <span class="${this.opt.scrollHintText}">${
-  this.opt.i18n.scrollable
-}</span>
+            this.opt.i18n.scrollable
+          }</span>
         </span>
       </div>`
       );
@@ -110,8 +110,8 @@ export default class ScrollHint {
   checkScrollableDir(item) {
     const { scrollHintBorderWidth, scrollableRightClass, scrollableLeftClass } = this.opt;
     const { element } = item;
-    const child = element.children[0];
-    const width = child.scrollWidth;
+
+    const width = element.scrollWidth;
     const parentWidth = element.offsetWidth;
     const scrollLeft = element.scrollLeft;
     if (parentWidth + scrollLeft < width - scrollHintBorderWidth) {

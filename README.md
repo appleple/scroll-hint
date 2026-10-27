@@ -130,3 +130,23 @@ new ScrollHint('.js-scrollable');
     <td>You can change the scrollable text from here</td>
   </tr>
 </table>
+
+## Development
+
+`lib/` と `js/` はビルド成果物のため Git では管理せず、`npm publish` 時(`prepack`)に生成します。
+
+```sh
+npm ci
+npm run dev        # ビルドの watch と examples/index.html の配信
+npm test           # lint + テスト (カバレッジ 90% 未満で失敗)
+npm run build      # lib/ (CJS/ESM) と js/ (ブラウザ向け) を生成
+```
+
+### Release
+
+```sh
+npm run release:patch   # minor / major も同様
+```
+
+`v*.*.*` タグを push すると GitHub Actions が npm の Trusted Publishing (OIDC) で公開します。
+事前に npmjs.com 側で、このリポジトリの `publish.yml` を Trusted Publisher として登録してください。
