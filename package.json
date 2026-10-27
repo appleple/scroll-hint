@@ -4,44 +4,55 @@
   "author": "steelydylan",
   "description": "JavaScript library to suggest that elements are scrollable",
   "license": "MIT",
-  "scripts": {
-    "test": "npm run lint",
-    "lint": "eslint ./src/index.js --fix",
-    "bundle": "browserify ./src/index.js -t babelify -p licensify --standalone ScrollHint --outfile ./js/scroll-hint.js",
-    "minifyjs": "uglifyjs ./js/scroll-hint.js --comments 'license' -o ./js/scroll-hint.min.js",
-    "build": "npm run bundle && npm run minifyjs",
-    "build:lib": "babel src --out-dir lib",
-    "sync": "browser-sync start --server './' --files './js/*.js' './css/*.css' --startPath '/examples/index.html'",
-    "watch": "watch 'npm run build && npm run build:lib' ./src/",
-    "start": "npm-run-all -p watch sync",
-    "deploy": "np --no-cleanup"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/appleple/scroll-hint.git"
   },
+  "bugs": {
+    "url": "https://github.com/appleple/scroll-hint/issues"
+  },
+  "homepage": "https://github.com/appleple/scroll-hint#readme",
   "main": "./lib/index.js",
+  "module": "./lib/index.mjs",
   "types": "./index.d.ts",
-  "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-preset-es2015": "^6.18.0",
-    "babelify": "^7.3.0",
-    "browser-sync": "^2.18.6",
-    "browserify": "^13.1.1",
-    "co": "^4.6.0",
-    "eslint": "^3.9.1",
-    "eslint-config-airbnb": "^13.0.0",
-    "eslint-config-airbnb-base": "^11.0.1",
-    "eslint-plugin-import": "^2.2.0",
-    "fs-extra": "^2.1.2",
-    "licensify": "^3.1.2",
-    "node-cmd": "^2.0.0",
-    "np": "^2.16.0",
-    "npm-run-all": "^4.0.2",
-    "uglify-js": "^3.19.3",
-    "watch": "^1.0.1",
-    "watchify": "^3.7.0"
+  "files": [
+    "lib",
+    "js",
+    "css",
+    "index.d.ts"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "npm run lint && npm run test:ci",
+    "test:ci": "vitest run --coverage",
+    "test:watch": "vitest",
+    "lint": "eslint . --fix",
+    "lint:check": "eslint .",
+    "build": "tsup",
+    "watch": "tsup --watch",
+    "serve": "vite",
+    "dev": "concurrently \"npm:watch\" \"npm:serve\"",
+    "prepack": "npm run lint:check && npm run test:ci && npm run build",
+    "release:patch": "npm version patch && git push --follow-tags",
+    "release:minor": "npm version minor && git push --follow-tags",
+    "release:major": "npm version major && git push --follow-tags"
   },
   "dependencies": {
-    "array.prototype.find": "^2.0.4",
-    "delegate": "^3.1.2",
     "es6-object-assign": "^1.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@vitest/coverage-v8": "^5.0.5",
+    "concurrently": "^10.0.6",
+    "eslint": "^10.13.0",
+    "globals": "^17.13.0",
+    "jsdom": "^30.1.3",
+    "tsup": "^9.0.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
   }
 }

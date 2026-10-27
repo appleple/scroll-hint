@@ -1,0 +1,24 @@
+name: Node CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+      - name: Use Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: '.node-version'
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint, test, and build
+        run: npm run prepack
+        env:
+          CI: true
