@@ -110,8 +110,7 @@ export default class ScrollHint {
   checkScrollableDir(item) {
     const { scrollHintBorderWidth, scrollableRightClass, scrollableLeftClass } = this.opt;
     const { element } = item;
-    const child = element.children[0];
-    const width = child.scrollWidth;
+    const width = element.scrollWidth;
     const parentWidth = element.offsetWidth;
     const scrollLeft = element.scrollLeft;
     if (parentWidth + scrollLeft < width - scrollHintBorderWidth) {

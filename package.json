@@ -5,7 +5,7 @@
   "description": "JavaScript library to suggest that elements are scrollable",
   "license": "MIT",
   "scripts": {
-    "test": "npm run lint",
+    "test": "npm run lint && node --test",
     "lint": "eslint ./src/index.js --fix",
     "bundle": "browserify ./src/index.js -t babelify -p licensify --standalone ScrollHint --outfile ./js/scroll-hint.js",
     "minifyjs": "uglifyjs ./js/scroll-hint.js --comments 'license' -o ./js/scroll-hint.min.js",
