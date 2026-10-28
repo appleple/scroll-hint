@@ -2,8 +2,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import ScrollHint from '../src/index';
 
 // jsdom はレイアウトを行わないため、寸法は defineProperty で差し込む。
-const setMetrics = (el, { offsetWidth, scrollWidth, scrollLeft = 0 }) => {
-  Object.defineProperty(el, 'offsetWidth', { configurable: true, value: offsetWidth });
+const setMetrics = (el, { clientWidth, scrollWidth, scrollLeft = 0 }) => {
+  Object.defineProperty(el, 'clientWidth', { configurable: true, value: clientWidth });
   Object.defineProperty(el, 'scrollWidth', { configurable: true, value: scrollWidth });
   el.scrollLeft = scrollLeft;
 };
@@ -126,21 +126,29 @@ describe('constructor', () => {
 });
 
 describe('isScrollable', () => {
-  it('scrollWidth が offsetWidth + offset を超えるとき true', () => {
+  it('scrollWidth が clientWidth + offset を超えるとき true', () => {
     const el = createContainer();
     const hint = new ScrollHint(el);
-    setMetrics(el, { offsetWidth: 100, scrollWidth: 200 });
+    setMetrics(el, { clientWidth: 100, scrollWidth: 200 });
     expect(hint.isScrollable(hint.items[0])).toBe(true);
-    setMetrics(el, { offsetWidth: 100, scrollWidth: 100 });
+    setMetrics(el, { clientWidth: 100, scrollWidth: 100 });
     expect(hint.isScrollable(hint.items[0])).toBe(false);
+  });
+
+  it('border や縦スクロールバーで offsetWidth が広くても clientWidth で判定する', () => {
+    const el = createContainer();
+    const hint = new ScrollHint(el);
+    Object.defineProperty(el, 'offsetWidth', { configurable: true, value: 115 });
+    setMetrics(el, { clientWidth: 100, scrollWidth: 110 });
+    expect(hint.isScrollable(hint.items[0])).toBe(true);
   });
 
   it('offset を考慮する', () => {
     const el = createContainer();
     const hint = new ScrollHint(el, { offset: 50 });
-    setMetrics(el, { offsetWidth: 100, scrollWidth: 140 });
+    setMetrics(el, { clientWidth: 100, scrollWidth: 140 });
     expect(hint.isScrollable(hint.items[0])).toBe(false);
-    setMetrics(el, { offsetWidth: 100, scrollWidth: 160 });
+    setMetrics(el, { clientWidth: 100, scrollWidth: 160 });
     expect(hint.isScrollable(hint.items[0])).toBe(true);
   });
 });
@@ -149,7 +157,7 @@ describe('checkScrollableDir', () => {
   const dirClasses = (el, scrollLeft, html) => {
     const container = el ?? createContainer(html);
     const hint = new ScrollHint(container, { scrollHintBorderWidth: 10 });
-    setMetrics(container, { offsetWidth: 100, scrollWidth: 260, scrollLeft });
+    setMetrics(container, { clientWidth: 100, scrollWidth: 260, scrollLeft });
     hint.checkScrollableDir(hint.items[0]);
     return {
       right: container.classList.contains('is-right-scrollable'),
@@ -182,14 +190,14 @@ describe('needSuggest', () => {
   ])('%j → %s', (state, expected) => {
     const el = createContainer();
     const hint = new ScrollHint(el);
-    setMetrics(el, { offsetWidth: 100, scrollWidth: 200 });
+    setMetrics(el, { clientWidth: 100, scrollWidth: 200 });
     expect(hint.needSuggest({ element: el, ...state })).toBe(expected);
   });
 
   it('スクロール不要なら false', () => {
     const el = createContainer();
     const hint = new ScrollHint(el);
-    setMetrics(el, { offsetWidth: 100, scrollWidth: 100 });
+    setMetrics(el, { clientWidth: 100, scrollWidth: 100 });
     expect(hint.needSuggest({ element: el, scrolledIn: true, interacted: false })).toBe(false);
   });
 });
@@ -218,7 +226,7 @@ describe('updateStatus', () => {
     vi.useFakeTimers();
     const el = createContainer();
     const hint = new ScrollHint(el, { remainingTime: 1000 });
-    setMetrics(el, { offsetWidth: 100, scrollWidth: 200 });
+    setMetrics(el, { clientWidth: 100, scrollWidth: 200 });
     hint.updateItems();
     expect(iconWrap(el).classList.contains('is-active')).toBe(true);
     vi.advanceTimersByTime(1000);
@@ -237,7 +245,7 @@ describe('updateItem', () => {
   it('スクロール可能なら is-scrollable と is-active を付ける', () => {
     const el = createContainer();
     const hint = new ScrollHint(el);
-    setMetrics(el, { offsetWidth: 100, scrollWidth: 200 });
+    setMetrics(el, { clientWidth: 100, scrollWidth: 200 });
     hint.updateItems();
     expect(el.classList.contains('is-scrollable')).toBe(true);
     expect(iconWrap(el).classList.contains('is-active')).toBe(true);
@@ -246,9 +254,9 @@ describe('updateItem', () => {
   it('スクロール不要なら両クラスを外す', () => {
     const el = createContainer();
     const hint = new ScrollHint(el);
-    setMetrics(el, { offsetWidth: 100, scrollWidth: 200 });
+    setMetrics(el, { clientWidth: 100, scrollWidth: 200 });
     hint.updateItems();
-    setMetrics(el, { offsetWidth: 100, scrollWidth: 100 });
+    setMetrics(el, { clientWidth: 100, scrollWidth: 100 });
     hint.updateItems();
     expect(el.classList.contains('is-scrollable')).toBe(false);
     expect(iconWrap(el).classList.contains('is-active')).toBe(false);
@@ -257,7 +265,7 @@ describe('updateItem', () => {
   it('対象要素の scroll イベントで interacted になりヒントが消える', () => {
     const el = createContainer();
     const hint = new ScrollHint(el);
-    setMetrics(el, { offsetWidth: 100, scrollWidth: 200 });
+    setMetrics(el, { clientWidth: 100, scrollWidth: 200 });
     hint.updateItems();
     el.dispatchEvent(new Event('scroll'));
     expect(hint.items[0].interacted).toBe(true);
@@ -277,8 +285,8 @@ describe('updateItem', () => {
     const shadow = createContainer();
     const hintPlain = new ScrollHint(plain);
     const hintShadow = new ScrollHint(shadow, { suggestiveShadow: true });
-    setMetrics(plain, { offsetWidth: 100, scrollWidth: 260 });
-    setMetrics(shadow, { offsetWidth: 100, scrollWidth: 260 });
+    setMetrics(plain, { clientWidth: 100, scrollWidth: 260 });
+    setMetrics(shadow, { clientWidth: 100, scrollWidth: 260 });
     hintPlain.updateItems();
     hintShadow.updateItems();
     expect(plain.classList.contains('is-right-scrollable')).toBe(false);
