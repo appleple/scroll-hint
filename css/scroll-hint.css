@@ -29,6 +29,11 @@
   /* 継承した font-size / line-height でアイコンの高さが変わらないようにする (高さは固定 75px + ラベル) */
   font-size: 0;
   line-height: 0;
+  /* ラベルが複数行になっても、アイコンがコンテナの下端を超えないよう、ラベルを縮めて収める */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: calc(50cqh + 25px);
   transform: scale(min(var(--scroll-hint-icon-scale-h, 1), var(--scroll-hint-icon-scale-w, 1)));
 }
 
@@ -51,6 +56,9 @@
   color: #FFF;
   margin-top: 5px;
   line-height: 1.5;
+  align-self: stretch;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .scroll-hint-icon-wrap.is-active .scroll-hint-icon {
@@ -59,6 +67,7 @@
 
 .scroll-hint-icon:before {
   display: inline-block;
+  flex: none;
   width: 40px;
   height: 40px;
   color: #FFF;
@@ -111,6 +120,7 @@
 @container (height < calc(101px + 1.875rem)) {
   .scroll-hint-icon {
     top: 50%;
+    max-height: 100cqh;
     transform: translateY(-50%) scale(min(var(--scroll-hint-icon-scale-h, 1), var(--scroll-hint-icon-scale-w, 1)));
   }
 }
