@@ -26,6 +26,15 @@
   background: rgba(0, 0, 0, .7);
   text-align: center;
   padding: 20px 10px 10px 10px;
+  /*
+   * flex 縦並びにすることで、継承した font-size / line-height でアイコンの高さが変わらない
+   * (高さは固定 75px + ラベル)。ラベルが複数行になってもコンテナの下端を超えないよう、ラベルを縮めて収める。
+   */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: calc(50cqh + 25px);
+  transform: scale(min(var(--scroll-hint-icon-scale-h, 1), var(--scroll-hint-icon-scale-w, 1)));
 }
 
 .scroll-hint-icon-wrap {
@@ -36,6 +45,9 @@
   height: 100%;
   max-height: 100%;
   pointer-events: none;
+  container-type: size;
+  /* アイコンが何らかの理由で収まらない場合でも、コンテナの縦横スクロールを発生させない */
+  overflow: hidden;
 }
 
 .scroll-hint-text {
@@ -43,6 +55,10 @@
   font-size: 0.625rem;
   color: #FFF;
   margin-top: 5px;
+  line-height: 1.5;
+  align-self: stretch;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .scroll-hint-icon-wrap.is-active .scroll-hint-icon {
@@ -51,6 +67,7 @@
 
 .scroll-hint-icon:before {
   display: inline-block;
+  flex: none;
   width: 40px;
   height: 40px;
   color: #FFF;
@@ -85,6 +102,99 @@
 .scroll-hint-icon-wrap.is-active .scroll-hint-icon:before {
   animation: scroll-hint-appear 1.2s linear;
   animation-iteration-count: 2;
+}
+
+/*
+ * コンテナがアイコンより小さい場合 (行数の少ないテーブル、幅の狭いコンテナなど)、
+ * アイコンがはみ出して縦横スクロールが出てしまうため、コンテナの大きさに応じて縮小する。
+ * 基準はスクロールコンテナの内側の大きさ (.scroll-hint-icon-wrap の大きさ)。
+ *
+ * アイコンは、幅 120px、高さは固定 75px + ラベル (.625rem × line-height 1.5 = .9375rem)。
+ * ラベルが rem に追従するため、ラベルを含む閾値は rem を含めて算出している。
+ * 閾値には小数丸めの誤差用に 1px の余裕を持たせている。
+ * 高さ 101px + 1.875rem (16px 基準で 131px) 以上かつ幅 120px 以上では従来の表示から変わらない。
+ * container-type: size 非対応のブラウザでは縮小せず、はみ出し分は wrap の overflow: hidden で切り取る。
+ */
+
+/* 高さ: 縦中央に置く (従来は上寄り) */
+@container (height < calc(101px + 1.875rem)) {
+  .scroll-hint-icon {
+    top: 50%;
+    max-height: 100cqh;
+    /* min() 非対応のブラウザ向けのフォールバック (縮小はしないが縦中央には置く) */
+    transform: translateY(-50%);
+    transform: translateY(-50%) scale(min(var(--scroll-hint-icon-scale-h, 1), var(--scroll-hint-icon-scale-w, 1)));
+  }
+}
+
+/* 高さ: ラベルを含む高さに収まらない場合はラベルを隠す (約 70px) */
+@container (height < calc(76px + .9375rem)) {
+  .scroll-hint-icon {
+    padding-bottom: 10px;
+  }
+
+  .scroll-hint-text {
+    display: none;
+  }
+}
+
+/* 高さ: 矢印も隠して手のアイコンのみにする (約 60px) */
+@container (height < 70px) {
+  .scroll-hint-icon {
+    padding-top: 10px;
+  }
+
+  .scroll-hint-icon:after {
+    display: none;
+  }
+}
+
+@container (height < 60px) {
+  .scroll-hint-icon {
+    --scroll-hint-icon-scale-h: .7;
+  }
+}
+
+@container (height < 42px) {
+  .scroll-hint-icon {
+    --scroll-hint-icon-scale-h: .5;
+  }
+}
+
+@container (height < 30px) {
+  .scroll-hint-icon {
+    --scroll-hint-icon-scale-h: .35;
+  }
+}
+
+/* 幅: 縮小倍率 × 120px が幅に収まるようにする */
+@container (width < 120px) {
+  .scroll-hint-icon {
+    --scroll-hint-icon-scale-w: .7;
+  }
+}
+
+@container (width < 84px) {
+  .scroll-hint-icon {
+    --scroll-hint-icon-scale-w: .5;
+  }
+}
+
+@container (width < 60px) {
+  .scroll-hint-icon {
+    --scroll-hint-icon-scale-w: .35;
+  }
+}
+
+/*
+ * 最小サイズ (高さ約 21px、幅約 42px) でも収まらない大きさでは、ヒントを出す意味がないため表示しない。
+ * display: none にすると JS (updateStatus) がアイコンの位置を取得できず、画面外でも表示済みと判定されるため、
+ * レイアウトを保つ visibility: hidden を使う。
+ */
+@container (height < 21px) or (width < 42px) {
+  .scroll-hint-icon {
+    visibility: hidden;
+  }
 }
 
 .scroll-hint-icon-white {

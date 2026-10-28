@@ -1,4 +1,3 @@
-import { assign } from 'es6-object-assign';
 import { append, addClass, removeClass, getScrollTop, getOffset } from './util';
 
 const defaults = {
@@ -25,7 +24,7 @@ const defaults = {
 
 export default class ScrollHint {
   constructor(ele, option) {
-    this.opt = assign({}, defaults, option);
+    this.opt = Object.assign({}, defaults, option);
     this.items = [];
     let elements;
     if (ele instanceof HTMLElement) {
@@ -103,8 +102,10 @@ export default class ScrollHint {
   isScrollable(item) {
     const { offset } = this.opt;
     const { element } = item;
-    const { offsetWidth } = element;
-    return (offsetWidth + offset < element.scrollWidth);
+    // offsetWidth は border と縦スクロールバーを含むため、横にあふれていても
+    // その分だけ判定が甘くなる。スクロール領域と比較すべき幅は clientWidth。
+    const { clientWidth } = element;
+    return (clientWidth + offset < element.scrollWidth);
   }
 
   checkScrollableDir(item) {
@@ -112,7 +113,7 @@ export default class ScrollHint {
     const { element } = item;
 
     const width = element.scrollWidth;
-    const parentWidth = element.offsetWidth;
+    const parentWidth = element.clientWidth;
     const scrollLeft = element.scrollLeft;
     if (parentWidth + scrollLeft < width - scrollHintBorderWidth) {
       addClass(element, scrollableRightClass);

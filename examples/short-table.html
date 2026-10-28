@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>scroll-hint: 行数の少ないテーブル</title>
+	<link rel="stylesheet" href="../css/scroll-hint.css">
+	<style>
+		table { border-collapse: collapse; width: 900px; }
+		th, td { border: 1px solid #ccc; padding: 4px 8px; white-space: nowrap; }
+		section { margin: 0 0 24px; }
+	</style>
+</head>
+<body>
+	<section><h2>1行</h2><div class="js-scrollable"><table><tr><td>row 1 ........................................</td><td>b</td></tr></table></div></section>
+	<section><h2>2行</h2><div class="js-scrollable"><table><tr><td>row 1 ........................................</td><td>b</td></tr><tr><td>row 2</td><td>b</td></tr></table></div></section>
+	<section><h2>5行</h2><div class="js-scrollable"><table><tr><td>row 1 ........................................</td><td>b</td></tr><tr><td>2</td><td>b</td></tr><tr><td>3</td><td>b</td></tr><tr><td>4</td><td>b</td></tr><tr><td>5</td><td>b</td></tr></table></div></section>
+	<script src="../js/scroll-hint.js"></script>
+	<script>
+		new ScrollHint('.js-scrollable');
+	</script>
+</body>
+</html>
