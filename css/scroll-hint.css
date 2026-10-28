@@ -26,10 +26,10 @@
   background: rgba(0, 0, 0, .7);
   text-align: center;
   padding: 20px 10px 10px 10px;
-  /* 継承した font-size / line-height でアイコンの高さが変わらないようにする (高さは固定 75px + ラベル) */
-  font-size: 0;
-  line-height: 0;
-  /* ラベルが複数行になっても、アイコンがコンテナの下端を超えないよう、ラベルを縮めて収める */
+  /*
+   * flex 縦並びにすることで、継承した font-size / line-height でアイコンの高さが変わらない
+   * (高さは固定 75px + ラベル)。ラベルが複数行になってもコンテナの下端を超えないよう、ラベルを縮めて収める。
+   */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -121,6 +121,8 @@
   .scroll-hint-icon {
     top: 50%;
     max-height: 100cqh;
+    /* min() 非対応のブラウザ向けのフォールバック (縮小はしないが縦中央には置く) */
+    transform: translateY(-50%);
     transform: translateY(-50%) scale(min(var(--scroll-hint-icon-scale-h, 1), var(--scroll-hint-icon-scale-w, 1)));
   }
 }
@@ -184,10 +186,14 @@
   }
 }
 
-/* 最小サイズ (高さ約 21px、幅約 42px) でも収まらない大きさでは、ヒントを出す意味がないため表示しない */
+/*
+ * 最小サイズ (高さ約 21px、幅約 42px) でも収まらない大きさでは、ヒントを出す意味がないため表示しない。
+ * display: none にすると JS (updateStatus) がアイコンの位置を取得できず、画面外でも表示済みと判定されるため、
+ * レイアウトを保つ visibility: hidden を使う。
+ */
 @container (height < 21px) or (width < 42px) {
   .scroll-hint-icon {
-    display: none;
+    visibility: hidden;
   }
 }
 

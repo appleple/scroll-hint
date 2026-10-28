@@ -26,6 +26,11 @@ yarn add scroll-hint
 ```
 
 
+### Browser support
+
+モダンブラウザ (Chrome / Edge / Firefox / Safari の最新版) が対象です。`Object.assign` を使うため IE11 は非対応です。
+アイコンの縮小表示には CSS コンテナクエリ (`container-type: size`) を使います。非対応のブラウザでは縮小せず、はみ出した部分はクリップされます。
+
 ## Usage
 
 import the js with babel and Browserify/Webpack
